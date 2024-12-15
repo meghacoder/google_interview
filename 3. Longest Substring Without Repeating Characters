@@ -1,0 +1,157 @@
+https://leetcode.com/problems/longest-substring-without-repeating-characters/description/?envType=company&envId=google&favoriteSlug=google-thirty-days
+
+3. Longest Substring Without Repeating Characters
+Solved
+Medium
+Topics
+Companies
+Hint
+Given a string s, find the length of the longest 
+substring
+ without repeating characters.
+
+ 
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3.
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+Example 3:
+
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+ 
+
+Constraints:
+
+0 <= s.length <= 5 * 104
+s consists of English letters, digits, symbols and spaces.
+Seen this question in a real interview before?
+1/5
+Yes
+No
+Accepted
+6.7M
+Submissions
+18.6M
+Acceptance Rate
+35.9%
+Topics
+Companies
+0 - 3 months
+Google
+31
+Amazon
+26
+Microsoft
+15
+Bloomberg
+10
+TikTok
+10
+Meta
+6
+Turing
+4
+IBM
+3
+Apple
+3
+Oracle
+3
+0 - 6 months
+Goldman Sachs
+6
+Infosys
+4
+Adobe
+4
+Zoho
+4
+Nvidia
+4
+Accenture
+4
+Yandex
+4
+Juspay
+3
+Tesla
+3
+Lyft
+3
+6 months ago
+Yahoo
+25
+Walmart Labs
+19
+Uber
+15
+Tinkoff
+14
+Spotify
+10
+Agoda
+8
+Flipkart
+7
+J.P. Morgan
+6
+eBay
+6
+Salesforce
+6
+
+
+
+//code
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int n=s.length();
+        int i=0;
+        int j=0;
+        map<char, int> mp;
+        int length=0;
+        while(j<n)
+        {
+            mp[s[j]]++;
+            if(mp.size()==j-i+1)
+            {
+                length=max(length, j-i+1);
+                j++;
+            }
+            else if(mp.size()<j-i+1)
+            {
+                while(mp.size()<j-i+1)
+                {
+                    mp[s[i]]--;
+                    if(mp[s[i]]==0)
+                    {
+                        mp.erase(s[i]);
+                    }
+                    i++;
+                }
+                
+                 if(mp.size()==j-i+1)
+                {
+                    length=max(length, j-i+1);
+                    j++;
+                }
+                
+            }
+        }
+        return length;
+        
+        
+    }
+};
