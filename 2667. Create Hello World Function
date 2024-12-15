@@ -1,0 +1,80 @@
+https://leetcode.com/problems/create-hello-world-function/description/?envType=company&envId=google&favoriteSlug=google-thirty-days
+
+2667. Create Hello World Function
+Solved
+Easy
+Companies
+Write a function createHelloWorld. It should return a new function that always returns "Hello World".
+ 
+
+Example 1:
+
+Input: args = []
+Output: "Hello World"
+Explanation:
+const f = createHelloWorld();
+f(); // "Hello World"
+
+The function returned by createHelloWorld should always return "Hello World".
+Example 2:
+
+Input: args = [{},null,42]
+Output: "Hello World"
+Explanation:
+const f = createHelloWorld();
+f({}, null, 42); // "Hello World"
+
+Any arguments could be passed to the function but it should still always return "Hello World".
+ 
+
+Constraints:
+
+0 <= args.length <= 10
+Seen this question in a real interview before?
+1/5
+Yes
+No
+Accepted
+564.1K
+Submissions
+690.7K
+Acceptance Rate
+81.7%
+Companies
+0 - 3 months
+Google
+54
+Amazon
+18
+Meta
+17
+Microsoft
+10
+Bloomberg
+8
+6 months ago
+Adobe
+41
+Apple
+39
+Uber
+10
+Yahoo
+8
+
+//code
+
+/**
+ * @return {Function}
+ */
+var createHelloWorld = function() {
+    
+    return function(...args) {
+        return "Hello World";
+    }
+};
+
+/**
+ * const f = createHelloWorld();
+ * f(); // "Hello World"
+ */
