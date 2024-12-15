@@ -1,0 +1,143 @@
+
+
+1. Two Sum
+Solved
+Easy
+Topics
+Companies
+Hint
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+Example 2:
+
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+Example 3:
+
+Input: nums = [3,3], target = 6
+Output: [0,1]
+ 
+
+Constraints:
+
+2 <= nums.length <= 104
+-109 <= nums[i] <= 109
+-109 <= target <= 109
+Only one valid answer exists.
+ 
+
+Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
+Seen this question in a real interview before?
+1/5
+Yes
+No
+Accepted
+15.5M
+Submissions
+28.4M
+Acceptance Rate
+54.4%
+Topics
+Companies
+0 - 3 months
+Google
+214
+Amazon
+73
+Microsoft
+58
+Meta
+49
+Bloomberg
+31
+Apple
+9
+Oracle
+5
+Infosys
+4
+Walmart Labs
+4
+Visa
+4
+0 - 6 months
+tcs
+11
+Yandex
+6
+IBM
+5
+Adobe
+5
+TikTok
+5
+Accenture
+5
+Salesforce
+5
+SAP
+5
+Goldman Sachs
+4
+Uber
+4
+6 months ago
+Yahoo
+90
+Capgemini
+12
+Zoho
+11
+Deloitte
+10
+Wipro
+10
+Spotify
+8
+Cisco
+7
+Nvidia
+7
+Tinkoff
+6
+Morgan Stanley
+6
+
+//code
+
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& a, int t) {
+        int n=a.size();
+        vector<int> vec;
+        unordered_map<int, int> mp;
+        for(int i=0;i<n;i++)
+        {
+            if(mp.find(t-a[i])!=mp.end())
+            {
+                vec.push_back(i);
+                vec.push_back(mp[t-a[i]]);
+                return vec;
+
+            }
+            mp[a[i]]=i;
+        }
+
+        return vec;
+        
+        
+        
+    }
+};
