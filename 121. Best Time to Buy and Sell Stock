@@ -1,0 +1,128 @@
+https://leetcode.com/problems/palindrome-linked-list/description/?envType=company&envId=google&favoriteSlug=google-thirty-days
+
+121. Best Time to Buy and Sell Stock
+Solved
+Easy
+Topics
+Companies
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+ 
+
+Example 1:
+
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+Example 2:
+
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transactions are done and the max profit = 0.
+ 
+
+Constraints:
+
+1 <= prices.length <= 105
+0 <= prices[i] <= 104
+Seen this question in a real interview before?
+1/5
+Yes
+No
+Accepted
+5.6M
+Submissions
+10.3M
+Acceptance Rate
+54.4%
+Topics
+Array
+Dynamic Programming
+Companies
+0 - 3 months
+Amazon
+36
+Google
+23
+Meta
+17
+Microsoft
+11
+Bloomberg
+7
+Morgan Stanley
+6
+TikTok
+3
+Accenture
+3
+Salesforce
+3
+Infosys
+2
+0 - 6 months
+Zoho
+8
+Apple
+5
+Uber
+5
+Walmart Labs
+4
+Nvidia
+4
+tcs
+3
+Tech Mahindra
+2
+Adobe
+2
+Oracle
+2
+EPAM Systems
+2
+6 months ago
+Yahoo
+26
+Goldman Sachs
+25
+Yandex
+22
+IBM
+17
+J.P. Morgan
+15
+Bolt
+12
+Zoox
+9
+PayPal
+7
+Media.net
+7
+Citadel
+6
+
+//code
+
+class Solution {
+public:
+    int maxProfit(vector<int>& a) {
+        int n=a.size();
+        int ans=0;
+        int maxx=a[n-1];
+        for(int i=n-2;i>=0;i--)
+        {
+            int profit=maxx-a[i];
+            ans=max(ans, profit);
+            maxx=max(maxx, a[i]);
+            
+        }
+        return ans;
+    }
+};
