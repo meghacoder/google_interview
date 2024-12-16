@@ -1,0 +1,100 @@
+https://leetcode.com/problems/ransom-note/description/?envType=company&envId=google&favoriteSlug=google-thirty-days
+
+383. Ransom Note
+Solved
+Easy
+Topics
+Companies
+Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+
+Each letter in magazine can only be used once in ransomNote.
+
+ 
+
+Example 1:
+
+Input: ransomNote = "a", magazine = "b"
+Output: false
+Example 2:
+
+Input: ransomNote = "aa", magazine = "ab"
+Output: false
+Example 3:
+
+Input: ransomNote = "aa", magazine = "aab"
+Output: true
+ 
+
+Constraints:
+
+1 <= ransomNote.length, magazine.length <= 105
+ransomNote and magazine consist of lowercase English letters.
+Seen this question in a real interview before?
+1/5
+Yes
+No
+Accepted
+1.4M
+Submissions
+2.2M
+Acceptance Rate
+63.3%
+Topics
+Hash Table
+String
+Counting
+Companies
+0 - 3 months
+Google
+4
+Amazon
+4
+Meta
+3
+0 - 6 months
+Bloomberg
+6
+Apple
+3
+Microsoft
+2
+6 months ago
+Adobe
+9
+Uber
+4
+Brock Solutions
+4
+Yahoo
+3
+Pinterest
+2
+Disney
+2
+
+
+class Solution {
+public:
+    bool canConstruct(string s, string t) { 
+        int n=t.length();
+        unordered_map<char, int> mp;
+        for(int i=0;i<n;i++)
+        {
+            mp[t[i]]++;
+        }
+
+        for(int i=0;i<s.length();i++)
+        {
+            if(mp.find(s[i])==mp.end())
+            return 0;
+            else
+            {
+                mp[s[i]]--;
+                if(mp[s[i]]==0)
+                mp.erase(s[i]);
+            }
+        }
+        return 1;
+        
+    }
+};
