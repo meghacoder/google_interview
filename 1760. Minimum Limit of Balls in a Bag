@@ -1,0 +1,119 @@
+https://leetcode.com/problems/minimum-limit-of-balls-in-a-bag/description/?envType=company&envId=google&favoriteSlug=google-thirty-days
+1760. Minimum Limit of Balls in a Bag
+Solved
+Medium
+Topics
+Companies
+Hint
+You are given an integer array nums where the ith bag contains nums[i] balls. You are also given an integer maxOperations.
+
+You can perform the following operation at most maxOperations times:
+
+Take any bag of balls and divide it into two new bags with a positive number of balls.
+For example, a bag of 5 balls can become two new bags of 1 and 4 balls, or two new bags of 2 and 3 balls.
+Your penalty is the maximum number of balls in a bag. You want to minimize your penalty after the operations.
+
+Return the minimum possible penalty after performing the operations.
+
+ 
+
+Example 1:
+
+Input: nums = [9], maxOperations = 2
+Output: 3
+Explanation: 
+- Divide the bag with 9 balls into two bags of sizes 6 and 3. [9] -> [6,3].
+- Divide the bag with 6 balls into two bags of sizes 3 and 3. [6,3] -> [3,3,3].
+The bag with the most number of balls has 3 balls, so your penalty is 3 and you should return 3.
+Example 2:
+
+Input: nums = [2,4,8,2], maxOperations = 4
+Output: 2
+Explanation:
+- Divide the bag with 8 balls into two bags of sizes 4 and 4. [2,4,8,2] -> [2,4,4,4,2].
+- Divide the bag with 4 balls into two bags of sizes 2 and 2. [2,4,4,4,2] -> [2,2,2,4,4,2].
+- Divide the bag with 4 balls into two bags of sizes 2 and 2. [2,2,2,4,4,2] -> [2,2,2,2,2,4,2].
+- Divide the bag with 4 balls into two bags of sizes 2 and 2. [2,2,2,2,2,4,2] -> [2,2,2,2,2,2,2,2].
+The bag with the most number of balls has 2 balls, so your penalty is 2, and you should return 2.
+ 
+
+Constraints:
+
+1 <= nums.length <= 105
+1 <= maxOperations, nums[i] <= 109
+Seen this question in a real interview before?
+1/5
+Yes
+No
+Accepted
+131.1K
+Submissions
+192.4K
+Acceptance Rate
+68.1%
+Topics
+Companies
+0 - 3 months
+Google
+7
+Bloomberg
+3
+0 - 6 months
+Meta
+2
+Flipkart
+2
+6 months ago
+Amazon
+2
+///code
+
+
+bool is(vector<int> &a, int maxx, int mid, int n)
+{
+    int count=0;
+    for(int i=0;i<n;i++)
+    {
+        count+=(a[i]/mid); // imp 16/4 ==4 but operation 3 lgege
+        if(a[i]%mid==0)
+        {
+            count--;
+        }
+
+    }
+
+    if(count>maxx)
+    return 0;
+    return 1;
+}
+
+
+int binary_search(vector<int> &a, int low, int high, int maxx, int n)
+{
+    int ans=high;
+    int mid;
+    while(low<=high)
+    {
+        mid=low+(high-low)/2;
+        if(is(a, maxx, mid, n))
+        {
+            ans=mid;
+            high=mid-1;
+        }
+        else
+        low=mid+1;
+
+    }
+    return ans;
+}
+
+
+class Solution {
+public:
+    int minimumSize(vector<int>& a, int max_operations) {
+        int n=a.size();
+        int high=*max_element(a.begin(), a.end());
+        int ans=binary_search(a, 1, high, max_operations, n);
+        return ans;
+    }
+};
